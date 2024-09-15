@@ -1,0 +1,94 @@
+<!-- used to give title click and see add employee -->
+<div mat-dialog-title>
+    <h1>EMP FORM</h1>
+</div>
+
+<!-- after creating emp form we wrap the entire both sections inside the form tag  -->
+<!-- now bind this with empform -->
+<!-- now we bind each of the control -->
+<!-- when form submit onFormSubmit called 
+  defined in ts file -->
+<form [formGroup]="empform" (ngSubmit)="onFormSubmit()">
+        <!-- define form elements -->
+        <div mat-dialog-content class="content">
+            <!-- mat form field se code copy -->
+            <div class="rowise">
+                <mat-form-field>
+                    <mat-label>FirstN</mat-label>
+                    <input matInput placeholder="sam" formControlName="firstname">
+                    <!-- placeholder box ke ander ka example dikha rha hai what to fill -->
+                    <!-- bind with each control in input section
+                  the name insider the form control name should match with empform -->
+
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>lastN</mat-label>
+                    <input matInput placeholder="soni" formControlName="lastname">
+                </mat-form-field>
+            </div>
+
+            <div class="rowise">
+                <mat-form-field>
+                    <mat-label>EMAIL</mat-label>
+                    <input matInput type="email" placeholder="sam" formControlName="email">
+                    <!-- by defualt type = text -->
+                    <!-- type can be email  -->
+                </mat-form-field>
+
+                <!-- for DOB we use date picker from material website-->
+                <mat-form-field>
+                    <mat-label>DOB</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="dob">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <!-- see beneath the box -->
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <!-- radio button -->
+            <div class="rowise">
+                <mat-radio-group aria-label="Select an option" formControlName="gender">
+                    <mat-label>GENDER</mat-label>
+                    <mat-radio-button value="1">Male</mat-radio-button>
+                    <mat-radio-button value="2">Female</mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+            <!-- select from drop down -->
+            <div class="rowsie">
+                <mat-form-field>
+                    <mat-label>Education</mat-label>
+                    <mat-select formControlName="education">
+                        <!-- here used in match select -->
+                        @for (val of edu; track val) {
+                        <mat-option [value]="val">{{val}}</mat-option>
+                        }
+                        <!-- loops through edu -->
+                        <!-- value = keyword 
+                    The value that will be selected by usewr will be displayed on UI
+                    The user selects the value and it will be passed to  thebackend-->
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <!-- age --->
+            <div class="rowise">
+                <mat-form-field>
+                    <mat-label>AGE</mat-label>
+                    <input matInput placeholder="21" type="number">
+                    <!-- only number -->
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- always comes in end -->
+        <div mat-dialog-actions>
+            <button mat-raised-button>CANCEL</button>
+            <button mat-raised-button color="primary" type="submit">SAVE</button>
+            <!-- save button act as submit button
+         whenever we click it will trigger ngsubmit see form tag above  -->
+        </div>
+</form>
+
+<!-- also check db.json created by us  -->

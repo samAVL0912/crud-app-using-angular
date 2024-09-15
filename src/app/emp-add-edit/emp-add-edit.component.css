@@ -1,0 +1,9 @@
+.rowise{
+    display: flex;
+    gap: 20px;
+    /* to intro gap between both blocks of same line */
+}
+mat-form-field{
+    width: 100%;
+    /* so that all blocks of = size */
+}
